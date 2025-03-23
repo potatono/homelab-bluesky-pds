@@ -81,6 +81,7 @@ Browse back to the cloudflare tunnel config page and ensure it is healthy and ha
 Also you will probably need to update your DNS on cloudflare to map *.YOURDOMAIN to the same CNAME that
 YOURDOMAIN is pointed at.  It should be something like `abc12345-abc1-abc1-abc1-abc123456def.cfargotunnel.com`.
 
+## Check that its working
 
-
-
+Check `https://YOURDOMAIN/` and `https://YOURDOMAIN/xrpc/_health`.  Then continue the setup from the official Bluesky
+PDS setup instructions from "Creating an account using pdsadmin".
