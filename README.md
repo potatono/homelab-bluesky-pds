@@ -63,6 +63,12 @@ $ bin/pdsadmin update
 
 Note this is different than the update that the offical Bluesky PDS install method uses.
 
+## Make the data directory
+
+```
+$ mkdir data
+```
+
 ## Start the containers
 
 ```
