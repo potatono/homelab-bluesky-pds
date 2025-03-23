@@ -1,0 +1,7 @@
+tunnel: TUNNEL_NAME
+ingress:
+  - hostname: DOMAIN
+    service: http://pds:3000
+  - hostname: "*.DOMAIN"
+    service: http://pds:3000
+  - service: http_status:404

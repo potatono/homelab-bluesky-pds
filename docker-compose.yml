@@ -1,0 +1,37 @@
+services:
+  pds:
+    container_name: pds
+    image: ghcr.io/bluesky-social/pds:latest
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - .:/pds
+    ports:
+      - 3000:3000
+  pds-web:
+    container_name: pds-web
+    image: nginx:latest
+    volumes:
+      - ./public:/usr/share/nginx/html
+    ports:
+      - 3001:80
+  pds-tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: pds-tunnel
+    restart: unless-stopped
+    command: tunnel --config /etc/tunnel-config.yml run ${CLOUDFLARE_TUNNEL_NAME}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./tunnel-config.yml:/etc/tunnel-config.yml
+    environment:
+      - "TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}"
+    labels:
+      # enbale watchtower updates
+      - "com.centurylinklabs.watchtower.enable=true"
+    depends_on:
+      - pds
+      - pds-web
+
+
+
+    
