@@ -1,7 +1,7 @@
 data
-bin
 .env
 tunnel-config.yml
+bin/account.sh
 bin/create-invite-code.sh
 bin/help.sh
 bin/request-crawl.sh

@@ -1,0 +1,20 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+PDS_ROOT=$(realpath $(dirname "$0")/..)
+PDS_ENV_FILE=$PDS_ROOT/.env
+PDS_DATADIR=$PDS_ROOT/data
+export PDS_ROOT PDS_ENV_FILE PDS_DATADIR
+
+# Command to run.
+COMMAND="${1:-help}"
+shift || true
+
+if [[ -e "$PDS_ROOT/bin/$COMMAND.sh" ]]; then
+  "$PDS_ROOT/bin/$COMMAND.sh" "$@"
+else
+  echo "ERROR: $COMMAND does not exist"
+fi
+
